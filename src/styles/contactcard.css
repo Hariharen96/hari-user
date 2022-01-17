@@ -1,0 +1,16 @@
+.fa-trash:hover {
+    color: #15afc0;
+    transition: all 0.5s ease;
+    cursor: pointer;
+}
+
+.fa-edit:hover {
+    color: #15afc0;
+    transition: all 0.5s ease;
+    cursor: pointer;
+}
+
+.profile {
+    width: 100px;
+    height: 100px;
+}

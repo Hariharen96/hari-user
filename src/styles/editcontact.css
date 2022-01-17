@@ -1,0 +1,35 @@
+.form {
+    margin-top: 8rem;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    padding: 1rem 2rem;
+    box-shadow: 0 .05rem 1rem rgba(0, 0, 0, 0.2);
+}
+
+.form label {
+    display: block;
+    font-weight: 500;
+    font-size: 1.5rem;
+    text-align: left;
+    line-height: 2;
+}
+
+.form input {
+    width: 30rem;
+    padding: .5rem;
+}
+
+.btn {
+    display: block;
+    margin-top: 3rem;
+    background: #18afc0;
+    color: white;
+    border-radius: .5rem;
+}
+
+.btn:hover {
+    color: white;
+}

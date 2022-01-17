@@ -1,0 +1,10 @@
+.top {
+    margin-top: 5rem;
+}
+
+form {
+    background: #fff;
+    padding: 2rem;
+    line-height: 3;
+    box-shadow: 0rem .05rem 2rem rgba(0, 0, 0, 0.2);
+}
