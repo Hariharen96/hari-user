@@ -1,26 +1,30 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import ContactCard from "./ContactCard";
 import "../../src/styles/contactlist.css";
+import { useContactsContext } from "../context/ContextApi";
 
-const ContactList = (props) => {
-  const inputEl = useRef("");
-  const deleteContactHandler = (id) => {
-    props.getContactId(id);
-  };
-  const renderContactList = props.contacts.map((contact) => {
-    return (
-      <ContactCard
-        contact={contact}
-        clickHandler={deleteContactHandler}
-        key={contact.id}
-      />
-    );
-  });
+const ContactList = () => {
+  const {
+    contacts,
+    retrieveContacts,
+    searchTerm,
+    searchResults,
+    searchHandler,
+  } = useContactsContext();
 
-  const getSearchTerm = () => {
-    console.log(inputEl.current.value);
-    props.searchKeyword(inputEl.current.value);
+  useEffect(() => {
+    retrieveContacts();
+  }, []);
+
+  const renderContactList = (searchTerm < 1 ? contacts : searchResults).map(
+    (contact) => {
+      return <ContactCard contact={contact} key={contact.id} />;
+    }
+  );
+
+  const onSearch = (e) => {
+    searchHandler(e.target.value);
   };
   return (
     <div className="container list-top">
@@ -29,10 +33,9 @@ const ContactList = (props) => {
         <input
           type="text"
           className="form-control"
-          ref={inputEl}
           placeholder="search contacts"
-          value={props.term}
-          onChange={getSearchTerm}
+          value={searchTerm}
+          onChange={(e) => onSearch(e)}
         />
         <Link to="/add">
           <button className="btn btn-primary d-block mx-auto">
@@ -40,9 +43,9 @@ const ContactList = (props) => {
           </button>
         </Link>
       </div>
-      {/* {renderContactList.length > 0 ? renderContactList : "No Contacts Available"}
-       */}
-      {renderContactList}
+      {renderContactList.length > 0
+        ? renderContactList
+        : "No Contacts Available"}
     </div>
   );
 };

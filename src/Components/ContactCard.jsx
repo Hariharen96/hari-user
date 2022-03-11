@@ -1,9 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../../src/styles/contactcard.css";
+import { useContactsContext } from "../context/ContextApi";
 import user from "../Images/user.jpg";
 
 const ContactCard = (props) => {
+  const { removeContactHandler } = useContactsContext();
+
+  const deleteContact = (id) => {
+    removeContactHandler(id);
+  };
   const { id, name, email } = props.contact;
   return (
     <>
@@ -17,12 +23,7 @@ const ContactCard = (props) => {
                 className="img-fluid img-thumbnail profile m-3"
               />
               <div className="card-body">
-                <Link
-                  to={{
-                    pathname: `/contact/${id}`,
-                    state: { contact: props.contact },
-                  }}
-                >
+                <Link to={`/contact/${id}`} state={{ contact: props.contact }}>
                   <div className="card-text">
                     <div className="card-title">Name: {name}</div>
                     <p className="card-text">Email-Id: {email}</p>
@@ -30,11 +31,9 @@ const ContactCard = (props) => {
                 </Link>
                 <i
                   className="fas fa-trash m-3"
-                  onClick={() => props.clickHandler(id)}
+                  onClick={() => deleteContact(id)}
                 ></i>
-                <Link
-                  to={{ pathname: "/edit", state: { contact: props.contact } }}
-                >
+                <Link to={`/edit/${id}`} state={{ contact: props.contact }}>
                   <i className="fas fa-edit"></i>
                 </Link>
               </div>

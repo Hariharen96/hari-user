@@ -1,10 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Pixbay from "../Images/pixbay.png";
 import "../../src/styles/contactdetail.css";
 
-const ContactDetail = (props) => {
-  const { name, email } = props.location.state.contact;
+const ContactDetail = () => {
+  const location = useLocation();
+  const { name, email } = location.state.contact;
   return (
     <>
       <div className="container details">
